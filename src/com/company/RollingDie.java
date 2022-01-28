@@ -33,10 +33,26 @@ public class RollingDie {
 	*/
 
     public int getBestRun(int[] values){
-        int x=0;
-        int y=0;
-        int curreentRun=0;
-        int bestRun=0;
+        int count=0;
+        int run=0;
+        int bestCount=0;
+        int bestRun=-1;
+        for(int i=0; i<values.length-1; i++){
+            if(values[i] == values[i+1]){
+                count++;
+            }else{
+                if(count>bestCount){
+                    bestCount=count;
+                    bestRun=run;
+                }
+                count=0;
+                run=i;
+            }
+            if(count>bestRun){
+                bestRun=count;
+            }
+        }
+        return bestRun;
     }
 
     public static void main(String[] args) {
